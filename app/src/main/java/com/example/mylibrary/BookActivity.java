@@ -52,6 +52,9 @@ public class BookActivity extends AppCompatActivity {
                 if (incomingBook!= null){
                     setData(incomingBook);
                     handleAlreadyReadbtn(incomingBook);
+                    handleWishlist(incomingBook);
+                    handleCurrentlyReading(incomingBook);
+                    handleFav(incomingBook);
                 }
 
             }
@@ -60,6 +63,90 @@ public class BookActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private void handleWishlist(final Book incomingBook) {
+        ArrayList<Book> wishlist = Utils.getInstance().getWantToReadBooks();
+
+        boolean isWished = false;
+
+        for (Book b: wishlist){
+            if (b.getId() == incomingBook.getId())
+                isWished =true;
+        }
+        if (isWished){
+            btnWantToRead.setEnabled(false);
+        }else{
+            btnWantToRead.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (Utils.getInstance().addToWantToRead(incomingBook)){
+                        Toast.makeText(BookActivity.this, "Book Added To WishList", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(BookActivity.this, Wishlist.class);
+                        startActivity(intent);
+
+                    }else {
+                        Toast.makeText(BookActivity.this, "Error Occurred", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+    }
+
+    private void handleCurrentlyReading(final Book incomingBook) {
+        ArrayList<Book> currBooks = Utils.getInstance().getCurrentlyReadingBook();
+
+        boolean isCurrRead = false;
+
+        for (Book b: currBooks){
+            if (b.getId() == incomingBook.getId())
+                isCurrRead =true;
+        }
+        if (isCurrRead){
+            btnCurrentlyReading.setEnabled(false);
+        }else{
+            btnCurrentlyReading.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (Utils.getInstance().addToCurrentlyReading(incomingBook)){
+                        Toast.makeText(BookActivity.this, "Book Added To Currently Reading", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(BookActivity.this, CurrentlyReading.class);
+                        startActivity(intent);
+
+                    }else {
+                        Toast.makeText(BookActivity.this, "Error Occurred", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+    }
+
+    private void handleFav(final Book incomingBook) {
+        ArrayList<Book> favBooks = Utils.getInstance().getFavouriteBooks();
+
+        boolean isFav = false;
+
+        for (Book b: favBooks){
+            if (b.getId() == incomingBook.getId())
+                isFav =true;
+        }
+        if (isFav){
+            btnFav.setEnabled(false);
+        }else{
+            btnFav.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (Utils.getInstance().addToFav(incomingBook)){
+                        Toast.makeText(BookActivity.this, "Book Added To Favourites", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(BookActivity.this, Favourites.class);
+                        startActivity(intent);
+
+                    }else {
+                        Toast.makeText(BookActivity.this, "Error Occurred", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
     }
 
     private void handleAlreadyReadbtn(final Book incomingBook) {
@@ -79,6 +166,9 @@ public class BookActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     if (Utils.getInstance().addToAlreadyRead(incomingBook)){
                         Toast.makeText(BookActivity.this, "Book Added", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(BookActivity.this, AlreadyReadActivity.class);
+                        startActivity(intent);
+
                     }else {
                         Toast.makeText(BookActivity.this, "Error Occurred", Toast.LENGTH_SHORT).show();
                     }

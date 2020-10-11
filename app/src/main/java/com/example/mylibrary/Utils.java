@@ -90,4 +90,16 @@ public class Utils {
         return alreadyReadBook.add(books);
     }
 
+    public boolean addToWantToRead(Book books){
+        return wantToReadBooks.add(books);
+    }
+
+    public boolean addToCurrentlyReading(Book books){
+        return currentlyReadingBook.add(books);
+    }
+
+    public boolean addToFav(Book books){
+        return favouriteBooks.add(books);
+    }
+
 }
