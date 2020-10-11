@@ -5,11 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.opengl.ETC1Util;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
 
 public class BookActivity extends AppCompatActivity {
     private TextView txtBookName, txtAuthorName,txtPages,txtDescription;
@@ -47,6 +51,7 @@ public class BookActivity extends AppCompatActivity {
                 Book incomingBook = Utils.getInstance().getBookById(bookId);
                 if (incomingBook!= null){
                     setData(incomingBook);
+                    handleAlreadyReadbtn(incomingBook);
                 }
 
             }
@@ -56,6 +61,33 @@ public class BookActivity extends AppCompatActivity {
 
 
     }
+
+    private void handleAlreadyReadbtn(final Book incomingBook) {
+        ArrayList<Book> alreadyRead = Utils.getInstance().getAlreadyReadBook();
+
+        boolean isAlreadyRead = false;
+
+        for (Book b: alreadyRead){
+            if (b.getId() == incomingBook.getId())
+                isAlreadyRead =true;
+        }
+        if (isAlreadyRead){
+            btnAlreadyRead.setEnabled(false);
+        }else{
+            btnAlreadyRead.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (Utils.getInstance().addToAlreadyRead(incomingBook)){
+                        Toast.makeText(BookActivity.this, "Book Added", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(BookActivity.this, "Error Occurred", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+
+    }
+
 
     private void setData(Book book) {
 
