@@ -32,4 +32,10 @@ public class AllBooksActivity extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_out,R.anim.slide_in);
+    }
 }
