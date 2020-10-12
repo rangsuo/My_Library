@@ -20,6 +20,7 @@ public class AllBooksActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_books);
+        overridePendingTransition(R.anim.slide_in,R.anim.slide_out);
 
         booksRecyclerView = findViewById(R.id.booksRecyclerView);
         adapter = new BooksRecyclerViewAdapter(this,"allBooks");
