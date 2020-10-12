@@ -176,8 +176,6 @@ public class BooksRecyclerViewAdapter  extends RecyclerView.Adapter<BooksRecycle
                     }
                 });
 
-            }else {
-                return;
             }
 
 
