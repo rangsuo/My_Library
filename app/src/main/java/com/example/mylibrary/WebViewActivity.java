@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 public class WebViewActivity extends AppCompatActivity {
     private WebView webView;
@@ -14,6 +15,7 @@ public class WebViewActivity extends AppCompatActivity {
 
         webView = findViewById(R.id.webView);
         webView.loadUrl("https://google.com/");
+        webView.setWebViewClient(new WebViewClient());
 
 
     }
