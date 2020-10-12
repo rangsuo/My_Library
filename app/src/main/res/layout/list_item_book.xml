@@ -76,6 +76,15 @@
                 android:layout_below="@+id/txtShortDesc"
                 android:layout_alignParentEnd="true"
                 android:id="@+id/btnUpArrow"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete"
+                android:layout_below="@+id/txtShortDesc"
+                android:layout_toStartOf="@+id/btnUpArrow"
+                android:id="@+id/btnDelete"
+                android:textColor="@color/red"
+                android:visibility="gone"/>
 
 
 

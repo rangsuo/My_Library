@@ -75,6 +75,7 @@ public class Utils {
     public static ArrayList<Book> getFavouriteBooks() {
         return favouriteBooks;
     }
+
     public  Book getBookById(int id){
         for (Book b:allBooks
              ) {

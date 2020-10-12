@@ -24,9 +24,11 @@ public class BooksRecyclerViewAdapter  extends RecyclerView.Adapter<BooksRecycle
     private static final String TAG = "BooksRecyclerViewAdapte";
     private ArrayList <Book> books = new ArrayList<>();
     private Context mContext;
+    private String parentActivity;
 
-    public BooksRecyclerViewAdapter(Context mContext) {
+    public BooksRecyclerViewAdapter(Context mContext, String parentActivity) {
         this.mContext = mContext;
+        this.parentActivity = parentActivity;
     }
 
     @NonNull
@@ -60,6 +62,49 @@ public class BooksRecyclerViewAdapter  extends RecyclerView.Adapter<BooksRecycle
             TransitionManager.beginDelayedTransition(holder.parent);
             holder.expandedRelLayout.setVisibility(View.VISIBLE);
             holder.downArrow.setVisibility(View.GONE);
+            if (parentActivity.equals("allBooks")){
+                holder.btnDelete.setVisibility(View.GONE);
+            }else if (parentActivity.equals("alreadyRead")){
+                holder.btnDelete.setVisibility(View.VISIBLE);
+                holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(mContext, "Btn Clicked", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }else if (parentActivity.equals("currentlyRead")){
+                holder.btnDelete.setVisibility(View.VISIBLE);
+                holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(mContext, "Btn2 clicked", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }else if (parentActivity.equals("Fav")){
+                holder.btnDelete.setVisibility(View.VISIBLE);
+                holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(mContext, "Btn3 Clicked", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }else if (parentActivity.equals("wishList")){
+                holder.btnDelete.setVisibility(View.VISIBLE);
+                holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(mContext, "btn 4 Clicked", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }else {
+                return;
+            }
+
+
         }else{
             TransitionManager.beginDelayedTransition(holder.parent);
             holder.expandedRelLayout.setVisibility(View.GONE);
@@ -86,6 +131,7 @@ public class BooksRecyclerViewAdapter  extends RecyclerView.Adapter<BooksRecycle
         private ImageView downArrow, upArrow;
         private RelativeLayout expandedRelLayout;
         private TextView txtAuthor, txtDescription;
+        private TextView btnDelete;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -98,6 +144,10 @@ public class BooksRecyclerViewAdapter  extends RecyclerView.Adapter<BooksRecycle
             expandedRelLayout = itemView.findViewById(R.id.expandedRelativeLayout);
             txtAuthor = itemView.findViewById(R.id.txtAuthor);
             txtDescription = itemView.findViewById(R.id.txtShortDesc);
+
+            btnDelete = itemView.findViewById(R.id.btnDelete);
+
+
 
             downArrow.setOnClickListener(new View.OnClickListener() {
                 @Override
