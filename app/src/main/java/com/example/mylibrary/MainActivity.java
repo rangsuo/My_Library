@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //ToDo: navigate To Website
+                        Intent intent = new Intent(MainActivity.this,WebViewActivity.class);
+                        startActivity(intent);
                     }
                 });
                 builder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
