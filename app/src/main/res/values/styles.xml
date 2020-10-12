@@ -15,5 +15,11 @@
         <item name="android:activityCloseExitAnimation">@anim/slide_in</item>
 
     </style>
+    <string name="activity_all_books">All Books</string>
+    <string name="activity_book">Book Details</string>
+    <string name="activity_already_read">Books You Already read</string>
+    <string name="Activity_favourite_books">Favourite Books</string>
+    <string name="activity_want_to_read">WIshList</string>
+    <string name="activity_currently_reading">Books You are Currently reading</string>
 
 </resources>

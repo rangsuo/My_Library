@@ -18,7 +18,7 @@ public class Favourites extends AppCompatActivity {
         recView.setAdapter(adap);
         recView.setLayoutManager(new LinearLayoutManager(this));
 
-        adap.setBooks(Utils.getInstance().getFavouriteBooks());
+        adap.setBooks(Utils.getInstance(this).getFavouriteBooks());
     }
 
     @Override

@@ -18,7 +18,7 @@ public class CurrentlyReading extends AppCompatActivity {
         recView.setAdapter(adap);
         recView.setLayoutManager(new LinearLayoutManager(this));
 
-        adap.setBooks(Utils.getInstance().getCurrentlyReadingBook());
+        adap.setBooks(Utils.getInstance(this).getCurrentlyReadingBook());
     }
     @Override
     public void onBackPressed() {

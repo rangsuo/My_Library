@@ -18,7 +18,7 @@ public class AlreadyReadActivity extends AppCompatActivity {
         recView.setAdapter(adap);
         recView.setLayoutManager(new LinearLayoutManager(this));
 
-        adap.setBooks(Utils.getInstance().getAlreadyReadBook());
+        adap.setBooks(Utils.getInstance(this).getAlreadyReadBook());
     }
 
     @Override

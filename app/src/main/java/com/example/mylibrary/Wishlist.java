@@ -19,7 +19,7 @@ public class Wishlist extends AppCompatActivity {
         recView.setAdapter(adap);
         recView.setLayoutManager(new LinearLayoutManager(this));
 
-        adap.setBooks(Utils.getInstance().getWantToReadBooks());
+        adap.setBooks(Utils.getInstance(this).getWantToReadBooks());
     }
     @Override
     public void onBackPressed() {
