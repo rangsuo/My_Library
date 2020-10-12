@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //ToDo: navigate To Website
                         Intent intent = new Intent(MainActivity.this,WebViewActivity.class);
+                        intent.putExtra("url", "https://google.com");
                         startActivity(intent);
                     }
                 });
