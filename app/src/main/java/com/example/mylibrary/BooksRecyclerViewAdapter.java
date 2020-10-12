@@ -1,6 +1,7 @@
 package com.example.mylibrary;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.transition.TransitionManager;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -69,7 +71,25 @@ public class BooksRecyclerViewAdapter  extends RecyclerView.Adapter<BooksRecycle
                 holder.btnDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(mContext, "Btn Clicked", Toast.LENGTH_SHORT).show();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                        builder.setMessage("Are you Sure you want To Delete "+books.get(position).getName()+" ?");
+                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                if (Utils.getInstance().removeFromAlreadyRead(books.get(position))){
+                                    Toast.makeText(mContext, "Book deleted", Toast.LENGTH_SHORT).show();
+                                    notifyDataSetChanged();
+
+                                }
+                            }
+                        });
+                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                        builder.create().show();
                     }
                 });
 
@@ -78,7 +98,25 @@ public class BooksRecyclerViewAdapter  extends RecyclerView.Adapter<BooksRecycle
                 holder.btnDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(mContext, "Btn2 clicked", Toast.LENGTH_SHORT).show();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                        builder.setMessage("Are you Sure you want To Delete "+books.get(position).getName()+" ?");
+                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                if (Utils.getInstance().removeFromCurrentlyReading(books.get(position))){
+                                    Toast.makeText(mContext, "Book deleted from currently reading", Toast.LENGTH_SHORT).show();
+                                    notifyDataSetChanged();
+
+                                }
+                            }
+                        });
+                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                        builder.create().show();
                     }
                 });
 
@@ -87,7 +125,26 @@ public class BooksRecyclerViewAdapter  extends RecyclerView.Adapter<BooksRecycle
                 holder.btnDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(mContext, "Btn3 Clicked", Toast.LENGTH_SHORT).show();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                        builder.setMessage("Are you Sure you want To Delete "+books.get(position).getName()+" ?");
+                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                if (Utils.getInstance().removeFromFav(books.get(position))){
+                                    Toast.makeText(mContext, "Book deleted From fav", Toast.LENGTH_SHORT).show();
+                                    notifyDataSetChanged();
+
+                                }
+                            }
+                        });
+                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                        builder.create().show();
+
                     }
                 });
 
@@ -96,7 +153,26 @@ public class BooksRecyclerViewAdapter  extends RecyclerView.Adapter<BooksRecycle
                 holder.btnDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(mContext, "btn 4 Clicked", Toast.LENGTH_SHORT).show();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                        builder.setMessage("Are you Sure you want To Delete "+books.get(position).getName()+" ?");
+                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                if (Utils.getInstance().removeFromWishList(books.get(position))){
+                                    Toast.makeText(mContext, "Book deleted from WishList", Toast.LENGTH_SHORT).show();
+                                    notifyDataSetChanged();
+
+                                }
+                            }
+                        });
+                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                        builder.create().show();
+
                     }
                 });
 
